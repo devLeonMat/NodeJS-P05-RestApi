@@ -1,6 +1,8 @@
 require('./config/config');
 
 const express = require('express');
+const mongoose = require('mongoose');
+
 const app = express();
 
 // config body-parser
@@ -48,6 +50,10 @@ app.put('/usuario/:id', function (req, res) {
 app.delete('/usuario', function (req, res) {
     res.json('delete  usuario')
 });
+
+mongoose.connect('mongodb://localhost/my_database');
+
+
 
 app.listen(process.env.PORT, () => {
     console.log('escuchando el puerto: ', process.env.PORT);
