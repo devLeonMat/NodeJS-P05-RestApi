@@ -14,46 +14,15 @@ app.use(bodyParser.urlencoded({extended: false}));
 // parse application/json
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-    res.json('Hello World')
-});
+app.use(require('./routes/usuario'));
 
-app.get('/usuario', function (req, res) {
-    res.json('get usuario')
-});
 
-app.post('/usuario', function (req, res) {
-    // obtener informacion del x-www-form-urlencoded
-    let body = req.body;
+mongoose.connect('mongodb+srv://rleon:hGw0uFf9r6B6l4pb@cluster0-cmcha.mongodb.net/NODE-COURSE01?retryWrites=true&w=majority', (err, res) => {
+    if (err) throw err;
 
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es necesario'
-        });
-
-    } else {
-        res.json({
-            persona: body
-        })
-    }
+    console.log('base de datos online')
 
 });
-
-app.put('/usuario/:id', function (req, res) {
-    let id = req.params.id;
-    res.json({
-        id: id
-    })
-});
-
-app.delete('/usuario', function (req, res) {
-    res.json('delete  usuario')
-});
-
-mongoose.connect('mongodb://localhost/my_database');
-
-
 
 app.listen(process.env.PORT, () => {
     console.log('escuchando el puerto: ', process.env.PORT);
