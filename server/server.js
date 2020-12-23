@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(require('./routes/usuario'));
 
 
-mongoose.connect('mongodb+srv://rleon:hGw0uFf9r6B6l4pb@cluster0-cmcha.mongodb.net/NODE-COURSE01?retryWrites=true&w=majority', (err, res) => {
+mongoose.connect('mongodb+srv://{user}:{pass}@cluster0.wyzyd.mongodb.net/NODE-COURSE01?retryWrites=true&w=majority', (err, res) => {
     if (err) throw err;
 
     console.log('base de datos online')
